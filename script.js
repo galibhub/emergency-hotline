@@ -80,20 +80,34 @@ const copyButtons = document.getElementsByClassName("copy-btn");
 
 for (let i = 0; i < copyButtons.length; i++) {
     copyButtons[i].addEventListener("click", function () {
-
+        // Find the header copy counter button
         const navCopyButton = document.getElementById("copy-2");
         const copySpan = navCopyButton.querySelector("span");
 
+        // Get current count and increase by 1
         const currentCount = parseInt(copySpan.innerText);
-
         const newCount = currentCount + 1;
 
+        // Update the copy count
         copySpan.innerText = newCount;
         copySpan.style.fontWeight = "bold";
 
+        // Get the phone number to copy
         const card = this.closest('.bg-white');
         const phoneNumber = card.querySelector('.text-4xl').innerText;
-
+        const serviceName = card.querySelector('h1').innerText;
+        
+        // Copy the number to clipboard
+        navigator.clipboard.writeText(phoneNumber)
+            .then(() => {
+                // Show alert
+                alert(`Copied ${serviceName} number: ${phoneNumber} to clipboard!`);
+            })
+            .catch(err => {
+                console.error('Could not copy text: ', err);
+                // Still show alert even if clipboard API fails
+                alert(`Number copied: ${phoneNumber}`);
+            });
     });
 }
 
