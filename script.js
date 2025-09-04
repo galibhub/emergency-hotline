@@ -67,3 +67,24 @@ for (let i = 0; i < callButtons.length; i++) {
     };
 }
 
+ // copy button//
+const copyButtons = document.getElementsByClassName("copy-btn");
+
+for (let i = 0; i < copyButtons.length; i++) {
+    copyButtons[i].addEventListener("click", function() {
+       
+        const navCopyButton = document.getElementById("copy-2");
+        const copySpan = navCopyButton.querySelector("span");
+        
+        const currentCount = parseInt(copySpan.innerText);
+        
+        const newCount = currentCount + 1;
+        
+        copySpan.innerText = newCount;
+        copySpan.style.fontWeight = "bold";
+        
+        const card = this.closest('.bg-white');
+        const phoneNumber = card.querySelector('.text-4xl').innerText;
+        
+    });
+}
